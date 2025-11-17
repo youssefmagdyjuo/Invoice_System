@@ -1,0 +1,23 @@
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+secrets.yml
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Build / packaging
+dist/
+build/
+coverage/
+tmp/
+.cache/
+public/build/
+
