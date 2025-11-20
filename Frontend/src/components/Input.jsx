@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Input({placeholder,value,fun,type='text'}) {
+export default function Input({name,placeholder,value,fun,type='text'}) {
     return (
         <div>
         <input 
@@ -8,6 +8,7 @@ export default function Input({placeholder,value,fun,type='text'}) {
         value={value}
         placeholder={placeholder}
         onChange={fun}
+        name={name}
         />
         </div>
     )
