@@ -6,10 +6,6 @@ const invoiceSchema = mongoose.Schema({
         type: Date,
         required: true
     },
-    due_date: {
-        type: Date,
-        required: true
-    },
     clientName: {
         type: String,
         required: true
@@ -21,6 +17,11 @@ const invoiceSchema = mongoose.Schema({
             city: { type: String, required: true }
         },
         required: true
+    },
+    draft: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     products: {
         type: [

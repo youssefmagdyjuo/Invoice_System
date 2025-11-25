@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    date: "",
-    due_date: "",
+    date: new Date().toISOString(),
     clientName: "",
     clientAddress: {
         country: "",
         street: "",
         city: ""
     },
+    draft: false,
     products: [{
         product_name: "",
         product_price: 0,
+        product_total_price: 0,
         count: 1,
-        descount: 0,
-        product_total_price: 0
+        descount: 0
     }],
     total_price: 0
 };
@@ -54,7 +54,9 @@ export const invoiceSlice = createSlice({
                 : price;
         },
         removeProduct: (state, action) => {
-            state.products.splice(action.payload, 1);
+            if(state.products.length > 1){
+                state.products.splice(action.payload, 1);
+            }
         },
         calculateTotal: (state) => {
             state.total_price = state.products.reduce(
@@ -62,8 +64,11 @@ export const invoiceSlice = createSlice({
                 0
             );
         },
-        resetInvoice: () => initialState
+        resetInvoice: () => initialState,
 
+        draftToggle: (state) => {
+            state.draft = !state.draft;
+        }
     },
 });
 export const {
@@ -74,7 +79,8 @@ export const {
     updateProduct,
     removeProduct,
     resetInvoice,
-    calculateTotal
+    calculateTotal,
+    draftToggle
 } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

@@ -1,13 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { addProduct, updateProduct } from '../features/invoice/invoiceSlice';
+import { addProduct, updateProduct ,removeProduct ,calculateTotal} from '../features/invoice/invoiceSlice';
 import Input from './Input';
 export default function EnterProducts() {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.invoice.products);
     return (
-        <div>
-
+        <>
             {/* add product button  */}
             <span
                 className='addProduct_btn'
@@ -15,7 +14,8 @@ export default function EnterProducts() {
             >
                 +
             </span>
-            <table>
+        <div className='scrollable_container'>
+            <table className='products_table'>
                 <thead>
                     <tr>
                         <th>Product:</th>
@@ -23,6 +23,7 @@ export default function EnterProducts() {
                         <th>Unit Price:</th>
                         <th>Descount:(%)</th>
                         <th>Total Price:</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@ export default function EnterProducts() {
                                                 field: 'product_name',
                                                 value: e.target.value
                                             }))
+                                            dispatch(calculateTotal());
                                         }}
                                     />
                                 </td>
@@ -52,19 +54,21 @@ export default function EnterProducts() {
                                                 field: 'count',
                                                 value: Number(e.target.value)
                                             }))
+                                            dispatch(calculateTotal());
                                         }}
                                     />
                                 </td>
                                 <td>
                                     <Input
                                         placeholder='0.0$'
-                                        value={product.price}
+                                        value={product.product_price}
                                         fun={(e) => {
                                             dispatch(updateProduct({
                                                 index: index,
                                                 field: 'product_price',
                                                 value: Number(e.target.value)
                                             }))
+                                            dispatch(calculateTotal());
                                         }}
                                     />
                                 </td>
@@ -78,6 +82,7 @@ export default function EnterProducts() {
                                                 field: 'descount',
                                                 value: Number(e.target.value)
                                             }))
+                                            dispatch(calculateTotal());
                                         }}
                                     />
                                 </td>
@@ -87,11 +92,22 @@ export default function EnterProducts() {
                                         value={product.product_total_price}
                                     />
                                 </td>
+                                <td>
+                                    {/* remove product button  */}
+                                    <span
+                                        className='removeProduct_btn'
+                                        onClick={() => {dispatch(removeProduct(index)); dispatch(calculateTotal());}}
+                                    >
+                                        -
+                                    </span>
+                                </td>
                             </tr>
                         ))
                     }
                 </tbody>
             </table>
         </div>
+        </>
+
     )
 }

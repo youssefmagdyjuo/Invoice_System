@@ -1,15 +1,15 @@
 import React from 'react'
 
-export default function Input({name,placeholder,value,fun,type='text'}) {
+export default function Input({id,name,placeholder,checked,value,fun,type='text'}) {
     return (
-        <div>
         <input 
         type={type} 
         value={value}
         placeholder={placeholder}
         onChange={fun}
         name={name}
+        id={id}
+        checked={type==='checkbox' ? checked : undefined}
         />
-        </div>
     )
 }

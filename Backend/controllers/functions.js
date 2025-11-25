@@ -37,13 +37,11 @@ const getSpecificInvoice = async (req, res) => {
 // POST METHOD 
 const ADDInvoice = async (req, res) => {
     try {
-        const newInvoice = req.body;
-        await invoice.create(newInvoice);
-        const invoices = await invoice.find({})
+        const newInvoice = await invoice.create(req.body);
         res.status(200).json({
             success: true,
             message: 'New invoice added successfully',
-            data: invoices
+            data: newInvoice
         });
     } catch (error) {
         console.error(error);
@@ -54,19 +52,18 @@ const ADDInvoice = async (req, res) => {
 const editInvoice = async (req, res) => {
     try {
         const { id } = req.params
-        const newInvoice = req.body;
-        const updatedInvoice = await invoice.findByIdAndUpdate(id, newInvoice);
+        const updatedInvoice = await invoice.findByIdAndUpdate(id, req.body);
         if (!updatedInvoice) {
             return res.status(404).json({
                 success: false,
                 message: 'invoice not found',
             });
         }
-        const invoices = await invoice.find({})
+        const updatedInvoiceData = await invoice.findById(id);
         res.status(200).json({
             success: true,
             message: 'invoice updated successfully',
-            data: invoices
+            data: updatedInvoiceData
         });
     } catch (error) {
         console.error(error);
@@ -84,11 +81,9 @@ const deleteInvoice = async (req, res) => {
                 message: 'invoice not found',
             });
         }
-        const invoices = await invoice.find({})
         res.status(200).json({
             success: true,
             message: 'invoice deleted successfully',
-            data: invoices
         });
     } catch (error) {
         console.error(error);

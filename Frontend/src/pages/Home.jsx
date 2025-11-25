@@ -15,12 +15,15 @@ export default function Home() {
                         style={'btn_primary'}
                     />
                 </Link>
-                <Button
-                    type={'button'}
-                    text={'Invoices'}
-                    style={'btn_secondry'}
-                />
+                <Link to={'/invoices'}>
+                    <Button
+                        type={'button'}
+                        text={'Invoices'}
+                        style={'btn_secondry'}
+                    />
+                </Link>
             </div>
+
         </section>
     )
 }
