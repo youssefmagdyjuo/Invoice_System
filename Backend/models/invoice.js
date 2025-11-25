@@ -18,6 +18,10 @@ const invoiceSchema = mongoose.Schema({
         },
         required: true
     },
+    clientPhone:{
+        type: String,
+        required: true
+    },
     draft: {
         type: Boolean,
         required: true,

@@ -8,6 +8,7 @@ const initialState = {
         street: "",
         city: ""
     },
+    clientPhone: "",
     draft: false,
     products: [{
         product_name: "",
@@ -33,6 +34,9 @@ export const invoiceSlice = createSlice({
         updateClientAddress: (state, action) => {
             const { field, value } = action.payload;
             state.clientAddress[field] = value;
+        },
+        updateClientPhone: (state, action) => {
+            state.clientPhone = action.payload;
         },
         addProduct: (state) => {
             state.products.push({
@@ -80,7 +84,8 @@ export const {
     removeProduct,
     resetInvoice,
     calculateTotal,
-    draftToggle
+    draftToggle,
+    updateClientPhone
 } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

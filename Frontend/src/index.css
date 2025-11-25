@@ -37,9 +37,10 @@ img {
   object-fit: cover;
 }
 
-.border{
+.border {
   border: 1px solid var(--secondry-color);
 }
+
 /*Buttons*/
 .btn {
   color: var(--white);
@@ -224,7 +225,7 @@ form {
   gap: 1rem;
 }
 
-thead tr {
+.products_table thead tr {
   position: sticky;
   top: 0;
   z-index: 10;
@@ -253,11 +254,12 @@ thead tr {
 }
 
 /*products table*/
-.products_table {
+.products_table,
+.invoices_table {
   border-collapse: separate;
 }
 
-.products_table thead tr th {
+table thead tr th {
   text-align: left;
   font-weight: 500;
 }
@@ -308,7 +310,8 @@ thead tr {
   filter: brightness(0.95);
 
 }
-/* ========== INVOICES PAGE ========== */
+
+/* ========== ALL INVOICES PAGE ========== */
 section.card {
   width: 100%;
   height: 10rem;
@@ -322,15 +325,70 @@ section.card {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-section.card h1{
+
+section.card h1 {
   font-size: 2.5rem;
   font-weight: 700;
 }
-.filter_section{
+
+.filter_section {
   display: flex;
   gap: 1rem;
   margin: 1rem 0;
 }
+
+.invoices_table {
+  width: 100%;
+  border-spacing: 0 0.5rem;
+}
+
+table thead tr th {
+  padding: 0.5rem;
+}
+
+table tbody tr td {
+  padding: 0.5rem;
+}
+
+.invoices_table thead th:first-child {
+  border-top-left-radius: 0.3rem;
+}
+
+.invoices_table thead th:last-child {
+  border-top-right-radius: 0.3rem;
+}
+
+.invoices_table thead tr {
+  background-color: var(--secondry-color);
+  color: var(--white);
+}
+.moreOptions{
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  width: 10rem;
+  height: 8rem;
+  background-color: var(--white);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.176);
+  border-radius: 0.4rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly !important;
+  padding: 1rem;
+  z-index: 10;
+}
+.moreOptions li{
+  cursor: pointer;
+  user-select: none;
+}
+.moreOptions li:hover{
+  color: var(--primary-color);
+}
+.flex{
+  display: flex;
+}
+
+/* ================ RESPONSIVE ============ */
 
 @media screen and (max-width: 1200px) {
   body {

@@ -28,6 +28,7 @@ export default function InvoiceForm() {
     // Handle form submission
     const handleFormSubmission = async () => {
         try {
+            alert('Submitting Form');
             const savedInvoices = await axios.post('/api/invoices', invoice);
             console.log(savedInvoices.data);
             dispatch(resetInvoice());
