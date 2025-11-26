@@ -6,35 +6,47 @@ import { setInvoices } from '../features/all invoices/allInvoicesSlice';
 import InvoicesTable from '../components/InvoicesTable';
 export default function Invoices() {
     const dispatch = useDispatch();
+    const [cards, setCards] = useState(
+        [
+            {
+                icon: "fa-solid fa-folder-open",
+                title: "All Invoices",
+                count: 0
+            },
+            {
+                icon: "fa-solid fa-floppy-disk",
+                title: "Saved",
+                count: 0
+            },
+            {
+                icon: "fa-solid fa-pen-to-square",
+                title: "Draft",
+                count: 0
+            }
+        ]
+    )
     useEffect(() => {
         // Fetch invoices from backend API
         const fetchInvoices = async () => {
             try {
                 const { data } = await axios.get('/api/invoices');
                 dispatch(setInvoices(data.data));
+                // update the first card's count with fetched invoices length
+                setCards(prevCards =>
+                    prevCards.map((c, i) =>
+                        i === 0 ? { ...c, count: data.data.length } :
+                            i === 1 ? { ...c, count: data.data.filter(inv => inv.draft == false).length } :
+                                i === 2 ? { ...c, count: data.data.filter(inv => inv.draft == true).length } :
+                                    c
+                    )
+                );
             } catch (error) {
                 console.log(error)
             }
         }
         fetchInvoices();
     }, [])
-    const cards = [
-        {
-            icon: "fa-solid fa-folder-open",
-            title: "All Invoices",
-            count: 58
-        },
-        {
-            icon: "fa-solid fa-floppy-disk",
-            title: "Saved",
-            count: 42
-        },
-        {
-            icon: "fa-solid fa-pen-to-square",
-            title: "Draft",
-            count: 16
-        }
-    ]
+
     const [specificCard, setSpecificCard] = useState(0);
     return (
         <div>
@@ -55,13 +67,19 @@ export default function Invoices() {
                     </div>
                     <div className='filter_section'>
                         <Input
-                        placeholder='Search by client name or phone'
+                            placeholder='Search by name..'
+                        />
+                        <Input
+                            placeholder='Search by country..'
+                        />
+                        <Input
+                            placeholder='Search by phone..'
                         />
                         <Input
                             type='date'
                         />
                     </div>
-                    <InvoicesTable/>
+                    <InvoicesTable />
                 </div>
             </div>
         </div>

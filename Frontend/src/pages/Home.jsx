@@ -8,7 +8,7 @@ export default function Home() {
                 <img src="/imges/homeImge.svg" alt="" />
             </div>
             <div className="buttons">
-                <Link to={'/invoiceform'}>
+                <Link to={'/createInvoice'}>
                     <Button
                         type={'button'}
                         text={'Add Invoice'}

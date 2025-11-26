@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 export default function NavBar() {
     const links = [
         { to: '/', icon: 'fa-house', label: 'Home' },
-        { to: '/invoiceform', icon: 'fa-plus', label: 'Create Invoice' },
+        { to: '/createInvoice', icon: 'fa-plus', label: 'Create Invoice' },
         { to: '/invoices', icon: 'fa-file-invoice', label: 'Invoices' },
         { to: '#', icon: 'fa-user', label: 'Clients' },
         { to: '#', icon: 'fa-gear', label: 'Settings' },

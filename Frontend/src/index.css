@@ -18,7 +18,7 @@
 :root {
   --primary-color: #18B4DB;
   --secondry-color: #455A64;
-  --light-gray: #46565d8e;
+  --light-gray: #b8c3c7;
   --white: #fff;
   --danger--color: rgba(243, 51, 51, 0.897);
 }
@@ -78,7 +78,31 @@ img {
 .btn_secondry {
   background-color: var(--secondry-color);
 }
+.btn_danger {
+  background-color: var(--danger--color);
+}
 
+/*popup*/
+.PopUpLayout_container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.285);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.PopUpLayout_box{
+  width: 90%;
+  max-width: 30rem;
+  background-color: var(--white);
+  border-radius: 0.4rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.183);
+  padding: 1rem;
+}
 /*Inputs*/
 input {
   border: 1px solid var(--light-gray);
@@ -340,7 +364,13 @@ section.card h1 {
 .invoices_table {
   width: 100%;
   border-spacing: 0 0.5rem;
+  border-collapse: collapse;
 }
+
+.invoices_table  td {
+  border-bottom: 1px solid var(--light-gray);
+}
+
 
 table thead tr th {
   padding: 0.5rem;
@@ -362,7 +392,8 @@ table tbody tr td {
   background-color: var(--secondry-color);
   color: var(--white);
 }
-.moreOptions{
+
+.moreOptions {
   position: absolute;
   top: 2rem;
   right: 1rem;
@@ -377,14 +408,17 @@ table tbody tr td {
   padding: 1rem;
   z-index: 10;
 }
-.moreOptions li{
+
+.moreOptions li {
   cursor: pointer;
   user-select: none;
 }
-.moreOptions li:hover{
+
+.moreOptions li:hover {
   color: var(--primary-color);
 }
-.flex{
+
+.flex {
   display: flex;
 }
 

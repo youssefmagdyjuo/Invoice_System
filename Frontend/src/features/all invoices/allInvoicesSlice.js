@@ -8,8 +8,13 @@ export const allInvoicesSlice = createSlice({
     reducers: {
         setInvoices: (state, action) => {
             state.invoices = action.payload;
-        }   
+        },
+        deleteInvoice:(state,action)=>{
+            state.invoices= state.invoices.filter((invoice)=>{
+                return invoice._id !== action.payload
+            })
+        }
     }
 });
-export const { setInvoices } = allInvoicesSlice.actions;
+export const { setInvoices,deleteInvoice } = allInvoicesSlice.actions;
 export default allInvoicesSlice.reducer;

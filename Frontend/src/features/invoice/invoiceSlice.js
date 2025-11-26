@@ -24,6 +24,19 @@ export const invoiceSlice = createSlice({
     name: "invoice",
     initialState,
     reducers: {
+        setFullInvoice: (state, action) => {
+            const invoice = action.payload;
+            return {
+                ...state,
+                ...invoice,
+                clientAddress: {
+                    ...state.clientAddress,
+                    ...invoice.clientAddress
+                },
+                products: invoice.products ? [...invoice.products] : state.products
+            };
+        }
+        ,
         updateInvoiceField: (state, action) => {
             const { field, value } = action.payload;
             state[field] = value;
@@ -58,7 +71,7 @@ export const invoiceSlice = createSlice({
                 : price;
         },
         removeProduct: (state, action) => {
-            if(state.products.length > 1){
+            if (state.products.length > 1) {
                 state.products.splice(action.payload, 1);
             }
         },
@@ -69,7 +82,6 @@ export const invoiceSlice = createSlice({
             );
         },
         resetInvoice: () => initialState,
-
         draftToggle: (state) => {
             state.draft = !state.draft;
         }
@@ -85,7 +97,8 @@ export const {
     resetInvoice,
     calculateTotal,
     draftToggle,
-    updateClientPhone
+    updateClientPhone,
+    setFullInvoice
 } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

@@ -1,43 +1,17 @@
-import Button from '../components/Button';
-import ClientInfo from '../components/ClientInfo';
-import EnterProducts from '../components/EnterProducts';
+import Button from './Button';
+import ClientInfo from './ClientInfo';
+import EnterProducts from './EnterProducts';
 import { useSelector, useDispatch } from 'react-redux';
-import { draftToggle ,resetInvoice} from '../features/invoice/invoiceSlice';
-import React from 'react';
-import axios from 'axios';
-import Input from '../components/Input';
-export default function InvoiceForm() {
+import { draftToggle } from '../features/invoice/invoiceSlice';
+import React, { useState } from 'react';
+// import axios from 'axios';
+import Input from './Input';
+export default function InvoiceForm({ children }) {
     // Print state
-    const [printState, setPrintState] = React.useState(true);
+    const [printState, setPrintState] = useState(true);
     const dispatch = useDispatch();
     const invoice = useSelector((state) => state.invoice);
-    // Form validation state
-    const [buttonDisabled, setButtonDisabled] = React.useState(true);
-    React.useEffect(() => {
-        if (invoice.clientName
-            && invoice.clientAddress['country']
-            && invoice.clientAddress['city']
-            && invoice.clientAddress['street']
-            && invoice.products[0].product_name
-            && invoice.products[0].product_price > 0) {
-            setButtonDisabled(false);
-        } else {
-            setButtonDisabled(true);
-        }
-    }, [invoice]);
-    // Handle form submission
-    const handleFormSubmission = async () => {
-        try {
-            alert('Submitting Form');
-            const savedInvoices = await axios.post('/api/invoices', invoice);
-            console.log(savedInvoices.data);
-            dispatch(resetInvoice());
 
-        } catch (error) {
-            console.log(error)
-
-        }
-    }
     return (
         <div className="page">
             <div className='page_container'>
@@ -71,13 +45,9 @@ export default function InvoiceForm() {
                         />
                         <p>Print Invoice as a PDF</p>
                     </div>
-                    <Button
-                        type={'button'}
-                        text={'Save Invoice'}
-                        style={'btn_primary'}
-                        disabled={buttonDisabled}
-                        fun={() => { handleFormSubmission() }}
-                    />
+                            {
+                                children
+                            }
                 </form>
             </div>
         </div>
