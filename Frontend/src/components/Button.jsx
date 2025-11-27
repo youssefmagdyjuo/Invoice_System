@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Button({ type, text, fun,style ,disabled,id,name}) {
+export default function Button({icon, type, text, fun,style ,disabled,id,name}) {
     return (
         <div>
             <button
@@ -11,7 +11,7 @@ export default function Button({ type, text, fun,style ,disabled,id,name}) {
                 id={id}
                 name={name}
             >
-                {text}
+                {icon} {text}
                 
             </button>
         </div>

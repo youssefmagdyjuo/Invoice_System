@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { default: axios } = require('axios');
 const invoice = require('../models/invoice')
 
@@ -99,7 +100,7 @@ const generatePDF = async (req, res) => {
         const response = await axios.post(
             "https://api.docraptor.com/docs",
             {
-                user_credentials: "PfFX1uM-cWNAmju1B4E1",
+                user_credentials:process.env.DocRaptor_KEY,
                 doc: {
                     test: true,
                     type: "pdf",
