@@ -2,6 +2,7 @@
 import Button from '../components/Button'
 import { Link } from 'react-router-dom'
 export default function Home() {
+
     return (
         <section className='heroSection'>
             <div className="homeImage">

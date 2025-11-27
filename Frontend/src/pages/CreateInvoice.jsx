@@ -5,11 +5,13 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Button from '../components/Button';
 import { useEffect, useState } from 'react';
-
+import { generatePDF } from '../utilities/generatePDF';
 
 export default function CreateInvoice() {
     const invoice = useSelector((state) => state.invoice);
     const [buttonDisabled, setButtonDisabled] = useState(false);
+    // Print state
+    const [printState, setPrintState] = useState(true);
     // Form validation state
     useEffect(() => {
         if (invoice.clientName
@@ -33,7 +35,10 @@ export default function CreateInvoice() {
             const savedInvoices = await axios.post('/api/invoices', invoice);
             console.log(savedInvoices.data);
             dispatch(resetInvoice());
-
+            // generate PDF function
+            if (printState) {
+                generatePDF(invoice)
+            }
         } catch (error) {
             console.log(error)
 
@@ -41,7 +46,7 @@ export default function CreateInvoice() {
     }
     return (
         <div>
-            <InvoiceForm>
+            <InvoiceForm printState={printState} setPrintState={setPrintState}>
                 <Button
                     type={'button'}
                     text={'Save Invoice'}

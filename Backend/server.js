@@ -11,6 +11,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/api/invoices',router)
+
 //Connect Database
 mongoose.connect(process.env.MONGO_URL)
     .then(() => {

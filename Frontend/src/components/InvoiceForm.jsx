@@ -6,9 +6,8 @@ import { draftToggle } from '../features/invoice/invoiceSlice';
 import React, { useState } from 'react';
 // import axios from 'axios';
 import Input from './Input';
-export default function InvoiceForm({ children }) {
-    // Print state
-    const [printState, setPrintState] = useState(true);
+export default function InvoiceForm({ children ,printState,setPrintState }) {
+
     const dispatch = useDispatch();
     const invoice = useSelector((state) => state.invoice);
 

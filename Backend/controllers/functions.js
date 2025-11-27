@@ -1,3 +1,4 @@
+const { default: axios } = require('axios');
 const invoice = require('../models/invoice')
 
 //GET METHOD
@@ -90,5 +91,32 @@ const deleteInvoice = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 }
+// GeneratePDF
+const generatePDF = async (req, res) => {
+    try {
+        const { html } = req.body
+        if (!html) return res.status(400).send("HTML content is required");
+        const response = await axios.post(
+            "https://api.docraptor.com/docs",
+            {
+                user_credentials: "PfFX1uM-cWNAmju1B4E1",
+                doc: {
+                    test: true,
+                    type: "pdf",
+                    document_content: html,
+                },
+            },
+            { responseType: "arraybuffer" }
+        );
 
-module.exports = { getInvoices, ADDInvoice, editInvoice, deleteInvoice ,getSpecificInvoice }
+        res.set({
+            "Content-Type": "application/pdf",
+            "Content-Disposition": 'attachment; filename="MyInvoice.pdf"'
+        });
+        res.send(response.data);
+    } catch (err) {
+        console.error(err.response?.data || err.message);
+        res.status(500).send("PDF Error");
+    }
+}
+module.exports = { getInvoices, ADDInvoice, editInvoice, deleteInvoice, getSpecificInvoice, generatePDF }

@@ -9,6 +9,7 @@ import axios from 'axios'
 import Button from '../components/Button'
 import PopUpLayout from '../components/PopUpLayout'
 import DeletePopUp from '../components/DeletePopUp'
+import GeneratePDF from '../components/PDF/GeneratePDF'
 export default function DetailsInvoice() {
 
     const [openPopUp, setOpenPopUp] = useState(false)
@@ -67,7 +68,8 @@ export default function DetailsInvoice() {
                         style={'btn_primary'}
                         disabled={buttonDisabled}
                         fun={handleUpdate}
-                    />
+                        />
+                        <GeneratePDF invoice={invoice}/>
                     <Button
                         type={'button'}
                         text={'Delete'}
