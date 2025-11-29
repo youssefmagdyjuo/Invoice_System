@@ -15,6 +15,7 @@ export default function DetailsInvoice() {
     const [openPopUp, setOpenPopUp] = useState(false)
     const invoice = useSelector((state) => state.invoice);
     const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [printState, setPrintState] = useState(false);
     // Form validation state
     useEffect(() => {
         if (invoice.clientName
@@ -60,7 +61,7 @@ export default function DetailsInvoice() {
                     id={id}
                 />
             </PopUpLayout>
-            <InvoiceForm>
+            <InvoiceForm printState={printState} setPrintState={setPrintState}>
                 <div className='flex gap-4'>
                     <Button
                         type={'button'}
@@ -78,7 +79,7 @@ export default function DetailsInvoice() {
                         fun={() => { setOpenPopUp(!openPopUp) }}
                     />
                 </div>
-            </InvoiceForm>
+            </InvoiceForm >
         </div>
     )
 }

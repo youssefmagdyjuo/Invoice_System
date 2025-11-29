@@ -11,7 +11,7 @@ export default function DeletePopUp({ changeOpen, id }) {
     const handleDelete = async () => {
         try {
             const { data } = await axios.delete(`/api/invoices/${id}`)
-            alert(data.message)
+            console.log(data.message)
             changeOpen(false)
             dispatch(resetInvoice())
             dispatch(deleteInvoice(id))
