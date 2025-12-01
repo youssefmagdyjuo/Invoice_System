@@ -20,7 +20,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path='/createInvoice' element={<CreateInvoice />} />
             <Route path='/invoices' element={<Invoices />} />
-            <Route path='/invoiceDetails/:id' element={<DetailsInvoice />} />
+            <Route path='/invoices/invoiceDetails/:id' element={<DetailsInvoice />} />
           </Route>
         </Routes>
       </Router>

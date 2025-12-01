@@ -122,7 +122,7 @@ export default function HTMLTemplate({invoice}) {
                     </tr>
                     <tr>
                         <td><strong>Billed To:</strong> {invoice.clientName}<br />{invoice.clientAddress.street}</td>
-                        <td><strong>Due Date:</strong> {invoice.date.split("T")[0]}</td>
+                        <td><strong>Due Date:</strong> {invoice.dueDate.split("T")[0]}</td>
                     </tr>
                 </table>
             </div>

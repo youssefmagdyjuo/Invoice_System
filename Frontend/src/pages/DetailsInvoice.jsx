@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import InvoiceForm from '../components/InvoiceForm'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { resetInvoice } from '../features/invoice/invoiceSlice'
@@ -11,7 +12,7 @@ import PopUpLayout from '../components/PopUpLayout'
 import DeletePopUp from '../components/DeletePopUp'
 import GeneratePDF from '../components/PDF/GeneratePDF'
 export default function DetailsInvoice() {
-
+    const navigate = useNavigate()
     const [openPopUp, setOpenPopUp] = useState(false)
     const invoice = useSelector((state) => state.invoice);
     const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -49,6 +50,7 @@ export default function DetailsInvoice() {
             const updatedInvoice = await axios.put(`/api/invoices/${id}`, invoice);
             console.log(updatedInvoice.data);
             dispatch(resetInvoice());
+            navigate('/invoices');
         } catch (error) {
             console.log(error)
         }
@@ -69,8 +71,8 @@ export default function DetailsInvoice() {
                         style={'btn_primary'}
                         disabled={buttonDisabled}
                         fun={handleUpdate}
-                        />
-                        <GeneratePDF invoice={invoice}/>
+                    />
+                    <GeneratePDF invoice={invoice} />
                     <Button
                         type={'button'}
                         text={'Delete'}

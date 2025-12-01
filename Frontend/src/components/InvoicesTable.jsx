@@ -41,6 +41,7 @@ export default function InvoicesTable({ stateInvoiceUi, clientName, clientPhone,
             <table className='invoices_table'>
                 <thead>
                     <tr>
+                        <th>Invoice</th>
                         <th>Client</th>
                         <th>Country</th>
                         <th>Phone</th>
@@ -51,10 +52,11 @@ export default function InvoicesTable({ stateInvoiceUi, clientName, clientPhone,
                 </thead>
                 <tbody>
                     {filteredInvoices.length === 0
-                        ? (<p className="no_results">No invoices match your search.</p>)
+                        ? (<p className="no_results">No invoices found</p>)
                         : (
                             filteredInvoices.map((invoice, index) => (
                                 <tr key={invoice._id}>
+                                    <td>{invoice.invoiceNumber}</td>
                                     <td>{invoice.clientName}</td>
                                     <td>{invoice.clientAddress.country}</td>
                                     <td>{invoice.clientPhone}</td>
@@ -68,7 +70,7 @@ export default function InvoicesTable({ stateInvoiceUi, clientName, clientPhone,
 
                                         <ul className={`moreOptions ${openOptionsIndex === index ? 'flex' : ''}`}>
                                             {/* View invoice  */}
-                                            <Link to={`/invoiceDetails/${invoice._id}`}>
+                                            <Link to={`/invoices/invoiceDetails/${invoice._id}`}>
                                                 <li className='flex gap-2 items-center '>
                                                     <i className="fa-solid fa-file-invoice-dollar"></i>
                                                     View Invoice

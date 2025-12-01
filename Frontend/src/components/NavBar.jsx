@@ -20,6 +20,10 @@ export default function NavBar() {
                     ? <i class="fa-solid fa-xmark"></i>
                     : <i class="fa-solid fa-bars"></i>}</span>
             <nav className={`${isOpen ? 'nav_active' : ''}`}>
+                
+                <div className="logo">
+                    <img src="/imges/logo.svg" alt="" />
+                </div>
                 <ul>
                     {links.map((link, index) => (
                         <Link to={link.to} key={index} onClick={() => setIsOpen(false)}>

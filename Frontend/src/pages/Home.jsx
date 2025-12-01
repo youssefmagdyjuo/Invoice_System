@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 export default function Home() {
 
     return (
-        <section className='heroSection'>
+        <div className="homePage">
+            <section className='heroSection'>
             <div className="homeImage">
                 <img src="/imges/homeImge.svg" alt="" />
             </div>
@@ -26,5 +27,6 @@ export default function Home() {
             </div>
 
         </section>
+        </div>
     )
 }

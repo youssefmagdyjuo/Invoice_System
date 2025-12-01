@@ -1,8 +1,15 @@
 const mongoose = require('mongoose')
 
 const invoiceSchema = mongoose.Schema({
-
+    invoiceNumber: {
+        type: String,
+        required: true
+    },
     date: {
+        type: Date,
+        required: true
+    },
+    dueDate: {
         type: Date,
         required: true
     },
@@ -18,7 +25,7 @@ const invoiceSchema = mongoose.Schema({
         },
         required: true
     },
-    clientPhone:{
+    clientPhone: {
         type: String,
         required: true
     },

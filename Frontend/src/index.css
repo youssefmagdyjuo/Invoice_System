@@ -145,10 +145,17 @@ input[type="checkbox"] {
   background-color: var(--secondry-color);
   color: var(--white);
 }
-
+.logo{
+  width: 10rem;
+  position: absolute;
+  top: 5rem;
+  display: flex;
+  place-self: center;
+}
 nav {
   padding: 0.5rem;
-  /* background-color: red; */
+  background-color:var(--secondry-color);
+  color: var(--white);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.176);
   height: 90%;
   padding: 1rem;
@@ -183,18 +190,29 @@ nav ul li {
 
 nav ul li:hover {
   background-color: var(--secondry-color);
+  background-color: var(--primary-color);
+
   color: var(--white);
 }
 
 .active_link {
   background-color: var(--secondry-color);
+  background-color: var(--primary-color);
   color: var(--white);
 }
 
 /* ===== HOME PAGE ===== */
+.homePage{
+  /* background-color: #18B4DB; */
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .heroSection {
   width: 70%;
-  margin: 2rem auto;
+  /* background-color: red; */
 }
 
 .heroSection .buttons {
@@ -338,7 +356,6 @@ table thead tr th {
 /* ========== ALL INVOICES PAGE ========== */
 .no_results{
   width: 100%;
-  text-align: center;
   margin-top: 1rem;
 }
 section.card {
@@ -445,7 +462,9 @@ table tbody tr td {
     left: 1rem;
     z-index: 100;
   }
-
+  .logo{
+    display: none;
+  }
   nav {
     background-color: var(--secondry-color);
     color: var(--white);

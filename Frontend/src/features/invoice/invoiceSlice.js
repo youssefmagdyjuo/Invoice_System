@@ -1,7 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+// Function to add days to a given date
+const addDays = (date, days) => {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result.toISOString();
+};
+// import { useSelector } from "react-redux";
+// const invoiceCounter = useSelector ((state) => state.invoiceCounter);
 const initialState = {
+    invoiceNumber: '',
     date: new Date().toISOString(),
+    dueDate: addDays(new Date().toISOString(), 7),
     clientName: "",
     clientAddress: {
         country: "",
@@ -84,6 +93,9 @@ export const invoiceSlice = createSlice({
         resetInvoice: () => initialState,
         draftToggle: (state) => {
             state.draft = !state.draft;
+        },
+        setInvoiceNumber : (state,action)=>{
+            state.invoiceNumber = action.payload
         }
     },
 });
@@ -98,7 +110,8 @@ export const {
     calculateTotal,
     draftToggle,
     updateClientPhone,
-    setFullInvoice
+    setFullInvoice,
+    setInvoiceNumber
 } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;
