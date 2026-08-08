@@ -18,7 +18,7 @@ export default function DetailsInvoice() {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [printState, setPrintState] = useState(false);
     // Form validation state
-    useEffect(() => {
+useEffect(() => {
         if (invoice.clientName
             && invoice.clientAddress['country']
             && invoice.clientAddress['city']

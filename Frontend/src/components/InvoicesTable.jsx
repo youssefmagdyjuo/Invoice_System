@@ -38,6 +38,7 @@ export default function InvoicesTable({ stateInvoiceUi, clientName, clientPhone,
                 <DeletePopUp changeOpen={setOpenPopUp} id={id} />
             </PopUpLayout>
 
+
             <table className='invoices_table'>
                 <thead>
                     <tr>

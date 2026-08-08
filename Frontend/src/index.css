@@ -118,7 +118,9 @@ input[type="checkbox"] {
   cursor: pointer;
   accent-color: var(--secondry-color);
 }
-
+input:focus{
+  border: 1px solid var(--secondry-color);
+}
 /* ===== NAB BAR ===== */
 .navBar_container {
   height: 100vh;

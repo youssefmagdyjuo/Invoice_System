@@ -6,8 +6,8 @@ export default function NavBar() {
         { to: '/', icon: 'fa-house', label: 'Home' },
         { to: '/createInvoice', icon: 'fa-plus', label: 'Create Invoice' },
         { to: '/invoices', icon: 'fa-file-invoice', label: 'Invoices' },
-        { to: '#', icon: 'fa-user', label: 'Clients' },
-        { to: '#', icon: 'fa-gear', label: 'Settings' },
+        { to: '/clients', icon: 'fa-user', label: 'Clients' },
+        { to: '/settings', icon: 'fa-gear', label: 'Settings' },
     ];
     const [isOpen, setIsOpen] = React.useState(false);
     const location = useLocation();
